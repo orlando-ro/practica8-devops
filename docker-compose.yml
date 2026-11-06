@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  server1:
+    build: .
+    ports: ["2201:22"]
+  server2:
+    build: .
+    ports: ["2202:22"]
+  server3:
+    build: .
+    ports: ["2203:22"]
+  server4:
+    build: .
+    ports: ["2204:22"]
+  server5:
+    build: .
+    ports: ["2205:22"]

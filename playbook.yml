@@ -1,0 +1,32 @@
+---
+- name: Automatización de servidores para la práctica
+  hosts: servidores
+  become: yes # Esto usa sudo automáticamente para los comandos
+  tasks:
+    - name: Actualizar cache de APT del sistema operativo
+      apt:
+        update_cache: yes
+
+    - name: Crear el usuario itla en cada servidor
+      user:
+        name: itla
+        state: present
+        create_home: yes
+
+    - name: Crear una carpeta llamada "app" en el directorio raíz
+      file:
+        path: /app
+        state: directory
+        mode: '0755'
+
+    - name: Crear un archivo hola.txt en la carpeta app
+      copy:
+        dest: /app/hola.txt
+        content: "Este es un archivo creado por Ansible.\n"
+
+    - name: Instalar la aplicación "cowsay" y "htop"
+      apt:
+        name:
+          - cowsay
+          - htop
+        state: present
